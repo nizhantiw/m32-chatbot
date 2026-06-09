@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 font-sans;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@layer components {
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  /* Prose overrides for markdown inside chat */
+  .chat-prose p { @apply mb-3 last:mb-0 leading-relaxed; }
+  .chat-prose ul { @apply list-disc pl-5 mb-3 space-y-1; }
+  .chat-prose ol { @apply list-decimal pl-5 mb-3 space-y-1; }
+  .chat-prose h1,
+  .chat-prose h2,
+  .chat-prose h3 { @apply font-semibold mt-4 mb-2; }
+  .chat-prose h1 { @apply text-xl; }
+  .chat-prose h2 { @apply text-lg; }
+  .chat-prose h3 { @apply text-base; }
+  .chat-prose a  { @apply text-brand-600 underline underline-offset-2 hover:text-brand-700; }
+  .chat-prose code:not(pre code) {
+    @apply bg-slate-100 text-slate-800 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+  .chat-prose pre {
+    @apply bg-slate-800 text-slate-100 rounded-lg p-4 overflow-x-auto text-sm mb-3;
+  }
+  .chat-prose pre code {
+    @apply bg-transparent text-inherit p-0;
+  }
+  .chat-prose blockquote {
+    @apply border-l-4 border-brand-500 pl-4 italic text-slate-600 my-3;
+  }
+  .chat-prose table {
+    @apply w-full text-sm border-collapse mb-3;
+  }
+  .chat-prose th {
+    @apply bg-slate-100 px-3 py-2 text-left font-semibold border border-slate-200;
+  }
+  .chat-prose td {
+    @apply px-3 py-2 border border-slate-200;
+  }
+  .chat-prose strong { @apply font-semibold; }
+  .chat-prose hr    { @apply border-slate-200 my-4; }
+}
+
+/* Blinking cursor for streaming */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '▋';
+  display: inline-block;
+  animation: blink 0.8s ease infinite;
+  margin-left: 1px;
+  font-size: 0.8em;
+  vertical-align: middle;
+  color: #6366f1;
+}

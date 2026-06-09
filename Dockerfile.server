@@ -1,0 +1,20 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install build tools for better-sqlite3 native bindings
+RUN apk add --no-cache python3 make g++
+
+# Copy workspace manifests
+COPY package.json ./
+COPY packages/server/package.json ./packages/server/
+
+# Install deps
+RUN npm install --workspace=packages/server
+
+# Copy server source
+COPY packages/server ./packages/server
+
+EXPOSE 3001
+
+CMD ["node", "packages/server/src/index.js"]
