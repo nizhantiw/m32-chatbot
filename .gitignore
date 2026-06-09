@@ -12,3 +12,5 @@ Thumbs.db
 .turbo/
 coverage/
 .nyc_output/
+
+packages/server/node_modules
