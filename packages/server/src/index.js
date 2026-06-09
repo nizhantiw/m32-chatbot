@@ -1,10 +1,3 @@
-// Load .env — try root-level first (monorepo), fall back to local
-import { config } from 'dotenv'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
-const __root = join(dirname(fileURLToPath(import.meta.url)), '../../../')
-config({ path: join(__root, '.env') })     // root .env (monorepo dev)
-config()                                    // packages/server/.env (fallback)
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'

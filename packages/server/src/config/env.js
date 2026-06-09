@@ -1,3 +1,11 @@
+import { config as loadDotenv } from 'dotenv'
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
+
+const __root = join(dirname(fileURLToPath(import.meta.url)), '../../../../')
+loadDotenv({ path: join(__root, '.env') })
+loadDotenv()
+
 const required = (name) => {
   const val = process.env[name]
   if (!val) throw new Error(`Missing required env var: ${name}`)

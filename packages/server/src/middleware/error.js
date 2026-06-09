@@ -1,5 +1,9 @@
 export const errorHandler = (err, req, res, next) => {
-  console.error(`[Error] ${req.method} ${req.path}:`, err.message)
+  console.error(`[Error] ${req.method} ${req.path}`)
+  console.error('message:', err?.message)
+  console.error('code:', err?.code)
+  console.error('status:', err?.status || err?.statusCode)
+  console.error('stack:', err?.stack)
 
   const status = err.status || err.statusCode || 500
   const isProd = process.env.NODE_ENV === 'production'

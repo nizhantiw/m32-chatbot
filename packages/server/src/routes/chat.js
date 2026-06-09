@@ -115,6 +115,12 @@ router.post('/:conversationId/message', async (req, res, next) => {
       },
     })
   } catch (err) {
+    console.error('[chat/message] AI stream failed')
+    console.error('message:', err?.message)
+    console.error('code:', err?.code)
+    console.error('status:', err?.status || err?.statusCode)
+    console.error('stack:', err?.stack)
+
     if (!res.headersSent) {
       next(err)
     } else {
